@@ -1,9 +1,10 @@
-
-import SignUp from '../../components/UI/Signup.jsx';
+import SignupForm from "../../components/UI/SignupForm.jsx";
 function SignUp() {
-  return <div>
-    <SignUp />
-  </div>;
+  return (
+    <div className="flex justify-center items-center h-screen w-full">
+      <SignupForm />
+    </div>
+  );
 }
 
 export default SignUp;
