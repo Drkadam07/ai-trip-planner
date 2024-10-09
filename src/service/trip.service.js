@@ -1,4 +1,4 @@
-import { db } from "./firebaseConfig";
+import { db } from "../firebase/firebaseConfig";
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 
 export const generateTrip = async (tripData) => {
