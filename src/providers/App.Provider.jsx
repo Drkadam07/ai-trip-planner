@@ -1,10 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "../components/providers/Auth.Provider";
 
-function AppProvider() {
-    <AuthProvider>
-      <BrowserRouter>{children}</BrowserRouter>
-    </AuthProvider>
+function AppProvider({ children }) {
+  <BrowserRouter>{children}</BrowserRouter>;
 }
 
 export default AppProvider;
