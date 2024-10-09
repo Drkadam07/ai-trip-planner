@@ -1,9 +1,10 @@
-
-import SignUp from '../../components/UI/Signup.jsx';
+import Signup from "../../components/UI/Signup.jsx";
 function SignUp() {
-  return <div>
-    <SignUp />
-  </div>;
+  return (
+    <div>
+      <Signup />
+    </div>
+  );
 }
 
 export default SignUp;

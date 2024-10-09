@@ -1,5 +1,5 @@
 function CreateTrip() {
-  return <div>CreateTrip</div>;
+  return <div className="create-trip">Create Teip</div>;
 }
 
 export default CreateTrip;
