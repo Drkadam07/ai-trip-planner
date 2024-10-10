@@ -8,51 +8,56 @@ function SignupForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formData = new FormData(e.target);
     const username = formData.get("username");
     const email = formData.get("email");
     const password = formData.get("password");
-
     try {
-    } catch (error) {}
+      // Handle form submission
+    } catch (error) {
+      // Handle errors
+    }
   };
 
   return (
-    <div>
+    <div className="bg-gray-900 p-4 rounded-xl shadow-2xl">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center justify-center gap-5 w-full max-w-md"
+        className="flex flex-col items-center justify-center gap-6 w-full max-w-md"
       >
-        <h1 className="text-5xl text-pink-600 font-Fredoka">
+        <h1 className="text-5xl text-purple-500 font-Fredoka mb-2">
           Create An Account
         </h1>
         <input
-          className="w-full text-slate-200 rounded-lg px-4 py-3 bg-[#0f172a] outline-none placeholder:tracking-widest text-xl font-medium"
+          className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
           type="text"
           placeholder="USERNAME"
+          name="username"
         />
         <input
-          className="w-full text-slate-200 rounded-lg px-4 py-3 bg-[#0f172a] outline-none placeholder:tracking-widest text-xl font-medium"
+          className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
           type="email"
           placeholder="EMAIL"
+          name="email"
         />
         <input
-          className="w-full text-slate-200 rounded-lg px-4 py-3 bg-[#0f172a] outline-none placeholder:tracking-widest text-xl font-medium"
+          className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
           type="password"
           placeholder="PASSWORD"
+          name="password"
         />
         <Button
-          className="!w-full !text-2xl !rounded-2xl !tracking-wider !p-2 !text-slate-50"
+          className="!w-full !text-2xl !rounded-lg !tracking-wider !p-3 !text-white !bg-purple-600 !hover:bg-purple-800 !transition !duration-300"
           variant="contained"
+          type="submit"
         >
           Create Account
         </Button>
 
-        <div className="w-full flex items-center my-1">
-          <div className="flex-grow h-px bg-slate-200"></div>
-          <span className="text-slate-400 text-md px-2">OR CONTINUE WITH</span>
-          <div className="flex-grow h-px bg-slate-200"></div>
+        <div className="w-full flex items-center my-2">
+          <div className="flex-grow h-px bg-gray-600"></div>
+          <span className="text-gray-400 text-md px-4">OR CONTINUE WITH</span>
+          <div className="flex-grow h-px bg-gray-600"></div>
         </div>
 
         <button className="w-full flex items-center justify-center gap-2 bg-white text-gray-800 font-semibold py-3 px-4 rounded-lg hover:bg-gray-100 transition duration-300">
@@ -60,10 +65,10 @@ function SignupForm() {
           <span>Sign up with Google</span>
         </button>
 
-        <p className="text-slate-400">
-          Already have an account ?{" "}
+        <p className="text-gray-400">
+          Already have an account?{" "}
           <span
-            className="text-cyan-300 cursor-pointer hover:underline font-Fredoka"
+            className="text-cyan-400 cursor-pointer hover:underline font-Fredoka transition duration-300"
             onClick={() => Navigate("/login")}
           >
             Login
