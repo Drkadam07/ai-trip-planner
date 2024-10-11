@@ -88,7 +88,7 @@ const NavItem = ({ name, path, activePath, isMobile, icon }) => {
 const EndButton = ({ isMobile, isLoggedIn }) => {
   const icon = isLoggedIn ? <MdLogout /> : <MdLogin />;
   const name = isLoggedIn ? "Logout" : "Login";
-  const path = isLoggedIn ? "/app/my-trips" : "/auth/login";
+  const path = isLoggedIn ? "/app/my-trips" : "/login";
 
   return (
     <Link
