@@ -5,12 +5,12 @@ function SignUp() {
     <div className="relative flex justify-center items-center min-h-screen w-full bg-gray-800 overflow-hidden">
       {/* SVG Background */}
       <div
-        className="absolute inset-0 opacity-50 z-0"
+        className="absolute inset-y-0 -left-40 right-0 z-0"
         style={{
           backgroundImage: "url('src/assets/svgs/signupwave.svg')",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "50% 60%",
         }}
       ></div>
 
