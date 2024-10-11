@@ -15,11 +15,11 @@ function SignUp() {
       ></div>
 
       {/* Content */}
-      <div className="relative z-10 flex grow flex-col md:flex-row justify-evenly items-center w-full max-w-6xl mx-auto p-5">
+      <div className="relative z-10 flex grow md:flex-row justify-evenly items-center w-full max-w-6xl mx-auto p-5">
         <SignupForm />
         <img
           src="src/assets/signup.png"
-          className="w-1/2 h-1/2 mt-8 md:mt-0"
+          className="hidden md:block mt-0 w-1/2 h-1/2"
           alt="signup page picture"
         />
       </div>

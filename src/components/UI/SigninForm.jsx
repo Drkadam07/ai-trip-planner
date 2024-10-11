@@ -17,7 +17,7 @@ function SigninForm() {
   };
 
   return (
-    <div className="bg-gray-900 w-2/5 p-8 rounded-xl shadow-2xl">
+    <div className="bg-gray-900 rounded-xl shadow-2xl md:w-2/5 p-5">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center justify-center gap-6 w-full max-w-md"
