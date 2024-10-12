@@ -1,184 +1,240 @@
-import { useEffect, useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import React, { useState } from "react";
+import { TextField } from "@mui/material";
+import { DateRange } from "react-date-range";
+import dayjs from "dayjs";
+import { addDays } from "date-fns";
+import { budgetOptions, peopleCountOptions } from "./option";
+
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import { DateRange } from "react-date-range";
-import { DateField } from "@mui/x-date-pickers/DateField";
-import dayjs from "dayjs";
-import RModal from "../UI/RModal";
-import { addDays } from "date-fns";
-import { budgetOptions, peopleCountOptions } from "./option.js";
+
+// Aceternity UI inspired components
+const Modal = ({ isOpen, onClose, title, children }) => {
+  if (!isOpen) return null;
+  return (
+    <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-40 flex items-center justify-center">
+      <div className="bg-white rounded-lg p-8 max-w-md w-full">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-bold">{title}</h2>
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-700"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+const Button = ({ children, onClick, primary }) => (
+  <button
+    onClick={onClick}
+    className={`px-4 py-2 rounded-md font-medium transition-all duration-200 ${
+      primary
+        ? "bg-blue-500 text-white hover:bg-blue-600"
+        : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+    }`}
+  >
+    {children}
+  </button>
+);
+
+const Card = ({ children, onClick, active }) => (
+  <div
+    onClick={onClick}
+    className={`p-4 rounded-lg shadow-md transition-all duration-200 cursor-pointer ${
+      active
+        ? "bg-blue-100 border-2 border-blue-500"
+        : "bg-white hover:shadow-lg"
+    }`}
+  >
+    {children}
+  </div>
+);
 
 const CreateTripForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     destination: "",
     dateRange: [new Date(), addDays(new Date(), 3)],
-    duration: 3,
     budget: "",
-    peopleCount: 0,
+    peopleCount: "",
   });
-  const [modelOpen, setModelOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  return (
-    <>
-      <form>
-        <div className="form-group flex flex-col gap-4">
-          <FormTextField
-            text="Name your trip"
-            label="Trip Name"
-            id="trip-name"
-          />
-          <FormTextField
-            text="What is destination of choice?"
-            label="Destination"
-            id="trip-destination"
-          />
-          <FormDateRangeField
-            dateRange={formData.dateRange}
-            setFormData={setFormData}
-            modelOpen={modelOpen}
-            setModelOpen={setModelOpen}
-          />
-          <FormRadioField
-            name="Budget"
-            description="Select your budget"
-            options={budgetOptions}
-          />
-          {/* <FormRadioField label="Number of People" id="trip-people-count" /> */}
-        </div>
-      </form>
-    </>
-  );
-};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(formData);
+  };
 
-export default CreateTripForm;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-const FormTextField = ({ label, id, text }) => {
-  return (
-    <div className="form-control flex items-center rounded-lg border-2 p-4 gap-4">
-      <p className="min-w-fit">{text}</p>
-      <TextField id={id} label={label} variant="filled" fullWidth />
-    </div>
-  );
-};
-
-const DateRangePickerC = ({ dateRange, setFormData }) => {
-  const [state, setState] = useState([
-    {
-      startDate: dateRange[0],
-      endDate: dateRange[1],
-      key: "selection",
-    },
-  ]);
-
-  useEffect(() => {
-    setFormData((formData) => ({
-      ...formData,
-      dateRange: [state[0].startDate, state[0].endDate],
+  const handleDateRangeChange = (item) => {
+    setFormData((prev) => ({
+      ...prev,
+      dateRange: [item.selection.startDate, item.selection.endDate],
     }));
-  }, [state]);
+  };
+
+  const handleOptionSelect = (fieldName, value) => {
+    setFormData((prev) => ({ ...prev, [fieldName]: value }));
+  };
 
   return (
-    <div className="form-control">
-      <DateRange
-        editableDateInputs={true}
-        onChange={(item) => setState([item.selection])}
-        moveRangeOnFirstSelection={false}
-        ranges={state}
-        direction="horizontal"
-        minDate={addDays(new Date(), 0)}
-        maxDate={addDays(new Date(), 100)}
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-8 max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-lg"
+    >
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">
+        Create Your Trip
+      </h1>
+
+      <FormTextField
+        label="Trip Name"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        helperText="Give your adventure a name"
       />
-    </div>
+
+      <FormTextField
+        label="Destination"
+        name="destination"
+        value={formData.destination}
+        onChange={handleChange}
+        helperText="Where are you heading?"
+      />
+
+      <FormDateRangeField
+        dateRange={formData.dateRange}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        onDateRangeChange={handleDateRangeChange}
+      />
+
+      <FormOptionField
+        text="What's your budget?"
+        options={budgetOptions}
+        activeOption={formData.budget}
+        onSelect={(value) => handleOptionSelect("budget", value)}
+      />
+
+      <FormOptionField
+        text="Who's coming along?"
+        options={peopleCountOptions}
+        activeOption={formData.peopleCount}
+        onSelect={(value) => handleOptionSelect("peopleCount", value)}
+      />
+
+      <div className="flex justify-end">
+        <Button primary onClick={handleSubmit}>
+          Generate Trip
+        </Button>
+      </div>
+    </form>
   );
 };
+
+const FormTextField = ({ label, name, value, onChange, helperText }) => (
+  <TextField
+    fullWidth
+    label={label}
+    name={name}
+    value={value}
+    onChange={onChange}
+    variant="outlined"
+    helperText={helperText}
+    className="bg-gray-50"
+  />
+);
 
 const FormDateRangeField = ({
   dateRange,
-  setFormData,
-  modelOpen,
-  setModelOpen,
-}) => {
-  const handleOpen = () => setModelOpen(true);
-
-  return (
-    <div className="form-control flex flex-col gap-4 justify-center items-center rounded-lg border-2 p-4">
-      <p className="self-start">Select a date range for your trip</p>
-      <div className="select-div flex gap-4 justify-center items-center w-full">
-        <div className="flex gap-4 flex-grow">
-          <DateField
-            label="Start Date"
-            value={dayjs(dateRange[0])}
-            variant="filled"
-            readOnly
-            disablePast
-            defaultValue={dayjs()}
-            color="primary"
-            format="DD-MM-YYYY"
-            fullWidth
-          />
-          <DateField
-            label="End Date"
-            value={dayjs(dateRange[1] ? dateRange[1] : undefined)}
-            variant="filled"
-            readOnly
-            disablePast
-            defaultValue={dayjs()}
-            color="primary"
-            format="DD-MM-YYYY"
-            fullWidth
-          />
-        </div>
-        <div className="select-btn">
-          {modelOpen ? (
-            <RModal
-              openState={modelOpen}
-              setOpenFn={setModelOpen}
-              title="Select Trip Date Range"
-              description="Please select a date range for your trip"
-            >
-              <div className="inner-modal">
-                <DateRangePickerC
-                  dateRange={dateRange}
-                  setFormData={setFormData}
-                />
-              </div>
-            </RModal>
-          ) : (
-            <Button
-              size="large"
-              fullWidth
-              variant="contained"
-              onClick={handleOpen}
-            >
-              Select Date Range
-            </Button>
-          )}
-        </div>
-      </div>
+  isModalOpen,
+  setIsModalOpen,
+  onDateRangeChange,
+}) => (
+  <div className="space-y-4">
+    <h3 className="text-lg font-semibold text-gray-700">
+      When are you traveling?
+    </h3>
+    <div className="flex gap-4">
+      <TextField
+        label="Start Date"
+        value={dayjs(dateRange[0]).format("DD-MM-YYYY")}
+        readOnly
+        fullWidth
+      />
+      <TextField
+        label="End Date"
+        value={dayjs(dateRange[1]).format("DD-MM-YYYY")}
+        readOnly
+        fullWidth
+      />
     </div>
-  );
-};
+    <Button onClick={() => setIsModalOpen(true)}>Select Dates</Button>
+    <Modal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      title="Select Trip Dates"
+    >
+      <DateRange
+        editableDateInputs={true}
+        onChange={(item) => onDateRangeChange(item)}
+        moveRangeOnFirstSelection={false}
+        ranges={[
+          { startDate: dateRange[0], endDate: dateRange[1], key: "selection" },
+        ]}
+        minDate={new Date()}
+        maxDate={addDays(new Date(), 100)}
+      />
+      <div className="mt-4 flex justify-end">
+        <Button onClick={() => setIsModalOpen(false)}>Confirm Dates</Button>
+      </div>
+    </Modal>
+  </div>
+);
 
-const FormRadioField = ({ name, description, options }) => {
-  return (
-    <div className="form-control flex flex-col items-center rounded-lg border-2 p-4 gap-4">
-      <p>{name}</p>
-      <p>{description}</p>
-      <div className="radio-grp-div">
-        {options.map((option, index) => (
-          <div className="radio-grp-item" key={index}>
-            <input
-              className="invisible"
-              type="radio"
-              name={name}
-              id={option.id}
-            />
+const FormOptionField = ({ text, options, activeOption, onSelect }) => (
+  <div className="space-y-4">
+    <h3 className="text-lg font-semibold text-gray-700">{text}</h3>
+    <div className="grid grid-cols-2 gap-4">
+      {options.map((option) => (
+        <Card
+          key={option.label}
+          onClick={() => onSelect(option.label)}
+          active={activeOption === option.label}
+        >
+          <div className="flex flex-col items-center">
+            <span className="text-4xl mb-2">{option.icon}</span>
+            <h4 className="text-xl font-medium mb-1">{option.label}</h4>
+            <p className="text-gray-600 text-center text-sm">
+              {option.description}
+            </p>
           </div>
-        ))}
-      </div>
+        </Card>
+      ))}
     </div>
-  );
-};
+  </div>
+);
+
+export default CreateTripForm;
