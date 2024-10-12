@@ -2,6 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { FcGoogle } from "react-icons/fc";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db} from "../../firebase/firebaseConfig";
+import { setDoc, doc } from "firebase/firestore";
+import { ToastContainer, toast } from 'react-toastify';
 
 function SignupForm() {
   const Navigate = useNavigate();
@@ -14,13 +18,37 @@ function SignupForm() {
     const password = formData.get("password");
     try {
       // Handle form submission
-    } catch (error) {
+      // console.log(username, email, password);
+      // Navigate("/login");
+      await createUserWithEmailAndPassword(auth,email,password);
+      const User=auth.currentUser;
+      console.log(User);
+      if(User){
+        await setDoc(doc(db,"users",User.uid),{
+          username: username,
+          email: email,
+          id: User.uid
+          });
+      }
+      // print the toast message
+      toast.success("Account created successfully",{
+        position: "top-right",
+      });
+      // toast
+      Navigate("/login");
+    } catch (error) {   
       // Handle errors
+      toast.error(`${error} Error creating account`,{
+        position: "top-right",
+        });
+      console.error(error);
+   
     }
   };
 
   return (
     <div className="bg-gray-900 p-4 rounded-xl shadow-2xl">
+      {/* <ToastContainer1/> */}
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center justify-center gap-6 w-full max-w-md"
