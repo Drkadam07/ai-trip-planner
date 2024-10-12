@@ -1,17 +1,14 @@
-import Navbar from "../../components/UI/Navbar";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import Navbar from "../../components/UI/Navbar.jsx";
+import LandingPage from "../../components/UI/LandingPage.jsx";
 
 function Landing() {
-  const Navigate = useNavigate();
-  
+
   return (
-    <>
+    <div className="w-full min-h-screen overflow-hidden relative bg-[#030712]">
       <Navbar />
-      <div className="profileInfo">
-        <h1>Welcome to the landing page</h1>
-        <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" onClick={() => Navigate("/app/profile")}>Profile</button>
-      </div>
-    </>
+      <LandingPage />
+    </div>
   );
 }
 

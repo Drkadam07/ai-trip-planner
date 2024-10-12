@@ -16,7 +16,6 @@ function Navbar() {
   const isMobileDevice = useMediaQuery("(max-width:768px)");
   const [isMobile, setIsMobile] = useState(isMobileDevice);
 
-
   useEffect(() => {
     setIsMobile(isMobileDevice);
   }, [isMobileDevice]);
@@ -27,48 +26,44 @@ function Navbar() {
 
   return (
     <>
-    <nav
-      className={`
-      navbar flex gap-2 lg:gap-32 justify-between items-center w-full p-2 lg:p-4
+      <nav
+        className={`
+      navbar flex gap-2 z-50 absolute lg:gap-32 justify-between items-center w-full p-2 lg:p-4
       bg-[url('./assets/svgs/navbarWaveSVG.svg')]
       ${isMobile && "fixed bottom-0 left-0 z-50"}
       `}
-    >
-      <div className="logo-div">
-        <Link to="/">
-          <img src={LogoSVG} className={`${isMobile && "h-8"}`} />
-        </Link>
-      </div>
-      <div
-        className={`nav-div flex ${
-          isMobile ? "" : "flex-grow"
-        } justify-center items-center rounded-full p-2 bg-neutral-50 shadow-inner`}
       >
-        <ul className="nav-list flex w-fit gap-16 px-8 md:gap-8 md:px-0 text-2xl md:text-sm">
-          <NavItem
-            name="New Trip"
-            path="/app/new-trip"
-            activePath={activePath}
-            icon={<MdCardTravel />}
-            isMobile={isMobile}
-          />
-          <NavItem
-            name="My Trips"
-            path="/app/my-trips"
-            activePath={activePath}
-            icon={<MdOutlineFolder />}
-            isMobile={isMobile}
-          />
-        </ul>
-      </div>
-      <div className="end-button-div">
-        <EndButton isLoggedIn={isLoggedIn} isMobile={isMobile} />
-      </div>
-    </nav>
-    <div>
-
-    </div>
-  
+        <div className="logo-div">
+          <Link to="/">
+            <img src={LogoSVG} className={`${isMobile && "h-8"}`} />
+          </Link>
+        </div>
+        <div
+          className={`nav-div flex ${
+            isMobile ? "" : "flex-grow"
+          } justify-center items-center rounded-full p-2 bg-neutral-50 shadow-inner`}
+        >
+          <ul className="nav-list flex w-fit gap-16 px-8 md:gap-8 md:px-0 text-2xl md:text-sm">
+            <NavItem
+              name="New Trip"
+              path="/app/new-trip"
+              activePath={activePath}
+              icon={<MdCardTravel />}
+              isMobile={isMobile}
+            />
+            <NavItem
+              name="My Trips"
+              path="/app/my-trips"
+              activePath={activePath}
+              icon={<MdOutlineFolder />}
+              isMobile={isMobile}
+            />
+          </ul>
+        </div>
+        <div className="end-button-div">
+          <EndButton isLoggedIn={isLoggedIn} isMobile={isMobile} />
+        </div>
+      </nav>
     </>
   );
 }

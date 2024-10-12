@@ -2,7 +2,7 @@ import SignupForm from "../../components/UI/SignupForm";
 
 function SignUp() {
   return (
-    <div className="relative flex justify-center items-center min-h-screen w-full bg-gray-800 overflow-hidden">
+    <div className="relative flex justify-center items-center min-h-screen w-full bg-[#030712] overflow-hidden">
       {/* SVG Background */}
       <div
         className="absolute inset-y-0 -left-40 right-0 z-0"
