@@ -8,15 +8,20 @@ import AppWrapper from "./components/wrappers/AppWrapper.jsx";
 import SignUp from "./pages/auth/SignUp.page.jsx";
 import Login from "./pages/auth/Login.page.jsx";
 import NotFound from "./pages/auth/NotFound.page.jsx";
+import Profile from "./pages/app/Profile.jsx";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <div className="App h-screen w-screen">
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Landing />} index />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/app" element={<AppWrapper />}>
+        <Route path="profile" element={<Profile/>} />
           <Route path="new-trip" element={<CreateTrip />} index />
           <Route path="trip/:id" element={<ViewTrip />} />
           <Route path="my-trips" element={<MyTrips />} />

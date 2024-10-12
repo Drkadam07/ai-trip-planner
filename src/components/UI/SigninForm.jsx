@@ -1,19 +1,35 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+import { auth} from "../../firebase/firebaseConfig";
+import { toast } from 'react-toastify';
+
 
 function SigninForm() {
   const Navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formData = new FormData(e.target);
     const email = formData.get("email");
     const password = formData.get("password");
 
     try {
-    } catch (error) {}
+      await signInWithEmailAndPassword(auth, email, password);
+      // toast message 
+      toast.success("Login successfully", {
+        position: "top-right",
+      });
+      Navigate("/app/profile");
+      //  Navigate("/home");
+    } catch (error) {
+      toast.error(`${error} Error`, {
+        position: "top-right",
+      });
+
+    }
   };
 
   return (
@@ -44,6 +60,15 @@ function SigninForm() {
         >
           LOGIN
         </Button>
+        {/* forgot password */}
+        <p className="text-gray-400 text-sm font-medium">
+          <a href="/">Forgot Password?</a>
+        </p>
+        {/* //signup */}
+        <div>
+          <p className="text-gray-400 text-sm">Don't have an account? <a className="text-purple-500 hover:text-purple-800 transition duration-300"
+            href="/signup">Sign up</a></p>
+        </div>
       </form>
     </div>
   );
