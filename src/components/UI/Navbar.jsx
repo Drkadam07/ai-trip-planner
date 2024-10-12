@@ -16,6 +16,7 @@ function Navbar() {
   const isMobileDevice = useMediaQuery("(max-width:768px)");
   const [isMobile, setIsMobile] = useState(isMobileDevice);
 
+
   useEffect(() => {
     setIsMobile(isMobileDevice);
   }, [isMobileDevice]);
@@ -25,6 +26,7 @@ function Navbar() {
   }, [pathname]);
 
   return (
+    <>
     <nav
       className={`
       navbar flex gap-2 lg:gap-32 justify-between items-center w-full p-2 lg:p-4
@@ -63,6 +65,11 @@ function Navbar() {
         <EndButton isLoggedIn={isLoggedIn} isMobile={isMobile} />
       </div>
     </nav>
+    <div>
+
+    </div>
+  
+    </>
   );
 }
 
