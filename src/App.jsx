@@ -14,14 +14,14 @@ import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
-    <div className="App h-screen w-screen">
+    <div className="App min-h-screen w-full overflow-x-hidden">
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Landing />} index />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/app" element={<AppWrapper />}>
-        <Route path="profile" element={<Profile/>} />
+          <Route path="profile" element={<Profile/>} />
           <Route path="new-trip" element={<CreateTrip />} index />
           <Route path="trip/:id" element={<ViewTrip />} />
           <Route path="my-trips" element={<MyTrips />} />
