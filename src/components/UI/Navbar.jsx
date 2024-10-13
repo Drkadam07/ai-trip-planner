@@ -29,12 +29,14 @@ function Navbar() {
     <>
       <nav
         className={`
-      navbar flex gap-2 z-30 lg:gap-32 justify-around items-center w-full p-2 lg:p-4 bg-contain
-      ${
-        isMobile
-          ? "fixed bottom-0 left-0 bg-[url('./assets/svgs/navBarWaveMobile.svg')]"
-          : " bg-[url('./assets/svgs/navbarWaveSVG.svg')]"
-      }
+          navbar flex gap-2 lg:gap-32 justify-around items-center w-full p-2 lg:p-4 bg-contain
+      fixed top-0 left-0 right-0
+            ${
+              isMobile
+                ? "fixed bottom-0 left-0 right-0 bg-[url('./assets/svgs/navBarWaveMobile.svg')]"
+                : " bg-[url('./assets/svgs/navbarWaveSVG.svg')]"
+            }
+      z-50
       `}
       >
         <div
