@@ -1,0 +1,125 @@
+{
+  "travel_plan": {
+    "destination": "Pune",
+    "dates": { "start_date": "13/10/2024", "end_date": "16/10/2024" },
+    "budget": "cheap",
+    "hotels": [
+      {
+        "name": "Hotel Vaibhav",
+        "address": "1340/3, Near Deccan Gymkhana, Deccan, Pune, Maharashtra 411004",
+        "price": "$20-$35 per night",
+        "image_url": "https://www.hotelvaibhav.com/images/hotel-vaibhav-pune.jpg",
+        "geo_coordinates": { "latitude": 18.5278, "longitude": 73.8535 },
+        "rating": 3.5,
+        "description": "A budget-friendly hotel in a central location, offering clean and comfortable rooms."
+      },
+      {
+        "name": "Hotel Le Roi",
+        "address": "1883/3, Sadashiv Peth, Pune, Maharashtra 411030",
+        "price": "$25-$40 per night",
+        "image_url": "https://www.hotelleroi.com/images/hotel-leroi-pune.jpg",
+        "geo_coordinates": { "latitude": 18.5221, "longitude": 73.8556 },
+        "rating": 3,
+        "description": "A simple and affordable hotel in a quiet location, ideal for solo travelers."
+      },
+      {
+        "name": "Hotel Atithi",
+        "address": "13/3, Shivaji Nagar, Pune, Maharashtra 411005",
+        "price": "$30-$45 per night",
+        "image_url": "https://www.hotelatithi.com/images/hotel-atithi-pune.jpg",
+        "geo_coordinates": { "latitude": 18.5251, "longitude": 73.8673 },
+        "rating": 3.5,
+        "description": "A basic hotel with clean rooms and good value for money."
+      }
+    ],
+    "itinerary": {
+      "day_1": {
+        "plan": [
+          {
+            "time": "10:00 AM",
+            "place": "Shaniwar Wada",
+            "details": "A historical fort built in the 18th century, offering a glimpse into Pune's rich history.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Shaniwar_Wada%2C_Pune%2C_India.jpg/1200px-Shaniwar_Wada%2C_Pune%2C_India.jpg",
+            "geo_coordinates": { "latitude": 18.5218, "longitude": 73.8543 },
+            "ticket_pricing": "₹20",
+            "time_to_travel": "2 hours"
+          },
+          {
+            "time": "12:00 PM",
+            "place": "Dagdusheth Halwai Ganpati Temple",
+            "details": "A famous temple dedicated to Lord Ganesha, known for its beautiful architecture.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Dagdusheth_Halwai_Ganpati.jpg/800px-Dagdusheth_Halwai_Ganpati.jpg",
+            "geo_coordinates": { "latitude": 18.5232, "longitude": 73.8594 },
+            "ticket_pricing": "Free",
+            "time_to_travel": "1 hour"
+          },
+          {
+            "time": "2:00 PM",
+            "place": "Raja Dinkar Kelkar Museum",
+            "details": "A museum showcasing a collection of ancient Indian artifacts and art.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Raja_Dinkar_Kelkar_Museum.jpg/800px-Raja_Dinkar_Kelkar_Museum.jpg",
+            "geo_coordinates": { "latitude": 18.5232, "longitude": 73.8571 },
+            "ticket_pricing": "₹50",
+            "time_to_travel": "2 hours"
+          }
+        ],
+        "best_time_to_visit": "Morning and afternoon"
+      },
+      "day_2": {
+        "plan": [
+          {
+            "time": "10:00 AM",
+            "place": "Parvati Hill",
+            "details": "A hilltop temple dedicated to Goddess Parvati, offering panoramic views of Pune.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Parvati_Hill%2C_Pune%2C_India.jpg/1024px-Parvati_Hill%2C_Pune%2C_India.jpg",
+            "geo_coordinates": { "latitude": 18.5329, "longitude": 73.8635 },
+            "ticket_pricing": "Free",
+            "time_to_travel": "2 hours"
+          },
+          {
+            "time": "12:00 PM",
+            "place": "Bund Garden",
+            "details": "A large garden with a lake, a popular spot for picnics and evening strolls.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Bund_Garden%2C_Pune%2C_India.jpg/1024px-Bund_Garden%2C_Pune%2C_India.jpg",
+            "geo_coordinates": { "latitude": 18.5307, "longitude": 73.861 },
+            "ticket_pricing": "Free",
+            "time_to_travel": "1 hour"
+          },
+          {
+            "time": "2:00 PM",
+            "place": "National War Museum",
+            "details": "A museum dedicated to the history of the Indian Army, showcasing various artifacts and exhibits.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/National_War_Museum%2C_Pune%2C_India.jpg/1024px-National_War_Museum%2C_Pune%2C_India.jpg",
+            "geo_coordinates": { "latitude": 18.5357, "longitude": 73.8672 },
+            "ticket_pricing": "₹20",
+            "time_to_travel": "2 hours"
+          }
+        ],
+        "best_time_to_visit": "Morning and afternoon"
+      },
+      "day_3": {
+        "plan": [
+          {
+            "time": "10:00 AM",
+            "place": "Sinhagad Fort",
+            "details": "A historic fort located on a hilltop near Pune, offering stunning views.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sinhagad_Fort%2C_Pune.jpg/1200px-Sinhagad_Fort%2C_Pune.jpg",
+            "geo_coordinates": { "latitude": 18.4887, "longitude": 73.8734 },
+            "ticket_pricing": "₹20",
+            "time_to_travel": "3 hours (including travel time)"
+          },
+          {
+            "time": "2:00 PM",
+            "place": "Pashan Lake",
+            "details": "A beautiful lake located in the outskirts of Pune, offering a tranquil retreat.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Pashan_Lake%2C_Pune.jpg/1200px-Pashan_Lake%2C_Pune.jpg",
+            "geo_coordinates": { "latitude": 18.5101, "longitude": 73.8297 },
+            "ticket_pricing": "Free",
+            "time_to_travel": "1 hour"
+          }
+        ],
+        "best_time_to_visit": "Morning and afternoon"
+      }
+    }
+  }
+}

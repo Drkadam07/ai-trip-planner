@@ -7,6 +7,7 @@ import {
   MdLogin,
   MdLogout,
 } from "react-icons/md";
+import { FaRegUserCircle, FaHome } from "react-icons/fa";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Navbar() {
@@ -28,22 +29,27 @@ function Navbar() {
     <>
       <nav
         className={`
-      navbar flex gap-2 z-50 absolute lg:gap-32 justify-between items-center w-full p-2 lg:p-4
-      bg-[url('./assets/svgs/navbarWaveSVG.svg')]
-      ${isMobile && "fixed bottom-0 left-0 z-50"}
+      navbar flex gap-2 z-30 lg:gap-32 justify-around items-center w-full p-2 lg:p-4 bg-contain
+      ${
+        isMobile
+          ? "fixed bottom-0 left-0 bg-[url('./assets/svgs/navBarWaveMobile.svg')]"
+          : " bg-[url('./assets/svgs/navbarWaveSVG.svg')]"
+      }
       `}
       >
-        <div className="logo-div">
-          <Link to="/">
-            <img src={LogoSVG} className={`${isMobile && "h-8"}`} />
-          </Link>
+        <div
+          className={`logo-div text-2xl ${
+            isMobile && "bg-white rounded-full p-2"
+          }`}
+        >
+          <Link to="/">{isMobile ? <FaHome /> : <img src={LogoSVG} />}</Link>
         </div>
         <div
           className={`nav-div flex ${
             isMobile ? "" : "flex-grow"
           } justify-center items-center rounded-full p-2 bg-neutral-50 shadow-inner`}
         >
-          <ul className="nav-list flex w-fit gap-16 px-8 md:gap-8 md:px-0 text-2xl md:text-sm">
+          <ul className="nav-list flex w-fit gap-8 px-8 md:gap-8 md:px-0 text-2xl md:text-sm">
             <NavItem
               name="New Trip"
               path="/app/new-trip"
@@ -58,9 +64,16 @@ function Navbar() {
               icon={<MdOutlineFolder />}
               isMobile={isMobile}
             />
+            <NavItem
+              name="Profile"
+              path="/app/profile"
+              activePath={activePath}
+              icon={<FaRegUserCircle />}
+              isMobile={isMobile}
+            />
           </ul>
         </div>
-        <div className="end-button-div">
+        <div className="end-button-div grid place-items-center">
           <EndButton isLoggedIn={isLoggedIn} isMobile={isMobile} />
         </div>
       </nav>
@@ -97,7 +110,7 @@ const EndButton = ({ isMobile, isLoggedIn }) => {
       to={path}
       className={
         isMobile
-          ? "end-button-mobile text-2xl"
+          ? "end-button-mobile text-2xl bg-white rounded-full p-2"
           : "rounded-full py-2 px-4 bg-neutral-800 text-white"
       }
     >
