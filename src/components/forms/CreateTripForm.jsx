@@ -4,6 +4,8 @@ import { DateRange } from "react-date-range";
 import dayjs from "dayjs";
 import { addDays } from "date-fns";
 import { budgetOptions, peopleCountOptions } from "./option";
+import { generateTrip } from "../../util/generateTrip";
+import { toast } from "react-toastify";
 
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
@@ -42,14 +44,14 @@ const Modal = ({ isOpen, onClose, title, children }) => {
   );
 };
 
-const Button = ({ children, onClick, primary }) => (
+const Button = ({ children, onClick, primary, loading }) => (
   <button
     onClick={onClick}
     className={`px-4 py-2 rounded-md font-medium transition-all duration-200 ${
       primary
         ? "bg-blue-500 text-white hover:bg-blue-600"
         : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-    }`}
+    } ${loading && "cursor-progress opacity-50"}`}
   >
     {children}
   </button>
@@ -77,10 +79,22 @@ const CreateTripForm = () => {
     peopleCount: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
+    setLoading(true);
+    try {
+      const trip = generateTrip(formData);
+      if (trip) {
+        console.log(trip);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong in generating trip!");
+      setLoading(false);
+    }
   };
 
   const handleChange = (event) => {
@@ -146,7 +160,7 @@ const CreateTripForm = () => {
       />
 
       <div className="flex justify-end">
-        <Button primary onClick={handleSubmit}>
+        <Button primary onClick={handleSubmit} loading={loading}>
           Generate Trip
         </Button>
       </div>
