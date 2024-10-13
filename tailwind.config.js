@@ -5,6 +5,8 @@ export default {
     extend: {
       fontFamily: {
         'Fredoka': ['Fredoka', 'sans-serif'],
+        'Agbalumo': ['Agbalumo', 'sans-serif'],
+        'Exo': ['Exo', 'sans-serif'],
       },
     },
   },
