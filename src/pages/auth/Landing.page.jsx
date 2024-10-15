@@ -4,11 +4,9 @@ import LandingPage from "../../components/UI/LandingPage.jsx";
 
 function Landing() {
   return (
-    <div className="bg-[#030712] min-h-screen flex flex-col">
-      <Navbar />
-      <div className="flex-grow">
-        <LandingPage />
-      </div>
+    <div className="bg-[#030712] border-2 border-pink-500">
+      <Navbar /> 
+      <LandingPage />
     </div>
   );
 }
